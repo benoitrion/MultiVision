@@ -28,8 +28,12 @@ app.use(express.static(__dirname + '/public'));
 
 //mongoose.connect('mongodb://localhost/multivision');
 //mongoose.connect('mongodb://root:password@127.0.0.1:27017/multivision');
-mongoose.connect('mongodb://127.0.0.1:27017/multivision');
-
+console.log(env);
+if (env === 'development') {
+  mongoose.connect('mongodb://127.0.0.1:27017/multivision');
+} else {
+  mongoose.connect('mongodb://benoitrion:multivision@ds133630.mlab.com:33630/multivision');
+}
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {
