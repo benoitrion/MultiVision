@@ -26,8 +26,6 @@ app.use(stylus.middleware(
 
 app.use(express.static(__dirname + '/public'));
 
-//mongoose.connect('mongodb://localhost/multivision');
-//mongoose.connect('mongodb://root:password@127.0.0.1:27017/multivision');
 console.log(env);
 if (env === 'development') {
   mongoose.connect('mongodb://127.0.0.1:27017/multivision');
@@ -40,9 +38,9 @@ db.once('open', function callback() {
   console.log('multivision db opened');
 });
 
-app.get('/partials/:partialPath', function(req, res) {
+app.get('/partials/*', function(req, res) {
   console.log('in controller partials/' + req.params.partialPath)
-  res.render('partials/' + req.params.partialPath);
+  res.render('../../public/app/' + req.params[0]);
 })
 
 app.get('*', function(req, res) {
