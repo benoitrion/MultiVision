@@ -10,6 +10,6 @@ module.exports = {
   production: {
     db:'mongodb://benoitrion:multivision@ds133630.mlab.com:33630/multivision',
     rootPath: rootPath,
-    port: process.env.PORT || 80
+    port: process.env.PORT || 8000
   }
 }

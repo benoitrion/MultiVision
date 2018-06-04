@@ -4,7 +4,7 @@ var express = require('express'),
     stylus = require('stylus'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
-    passeport = require('passeport');
+    passport = require('passport');
 
 module.exports = function(app, config) {
   function compile(str, path) {

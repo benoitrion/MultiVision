@@ -13,8 +13,8 @@ require('./server/config/express')(app, config);
 
 require('./server/config/mongoose')(config);
 
-var User = mongose.model('User');
-passeport.use(new LocalStrategy{
+var User = mongoose.model('User');
+passport.use(new LocalStrategy(
   function(username, password, done) {
     User.findOne({username:username}).exec(function(err, user) {
       if(user) {
@@ -24,15 +24,15 @@ passeport.use(new LocalStrategy{
       }
     })
   }
-});
+));
 
-passeport.serializeUser(function(user, done) {
+passport.serializeUser(function(user, done) {
   if(user) {
     done(null, user._id);
   }
 });
 
-passeport.deserializeUser(function(id, done) {
+passport.deserializeUser(function(id, done) {
   User.findOne({_id:id}).exec(function(err, user) {
     if(user) {
       return done(null, user);

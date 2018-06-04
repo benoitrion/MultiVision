@@ -5,16 +5,16 @@ module.exports = function(config) {
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error...'));
   db.once('open', function callback() {
-    console.log('multivision db opened');
+    console.log('multivision db opened. connected to ' + config.db);
   });
-   
+
   var userSchema = mongoose.Schema({
       firstName: String,
       lastName: String,
       userName: String
   });
   var User = mongoose.model('User', userSchema);
-  
+
   User.find({}).exec(function(err, collection) {
     if(collection.length === 0) {
       User.create({firstName:'Joe',lastName:'Doe',userName:'joe'});
