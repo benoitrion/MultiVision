@@ -15,20 +15,8 @@ require('./server/config/mongoose')(config);
 
 var User = mongoose.model('User');
 passport.use(new LocalStrategy(
-   function(username, password, done) {
-     console.log('in local');
-       User.findOne({ username: username, password: password }, function (err, user) {
-           done(err, user);
-         });
-     }
- ));
-/*passport.use(new LocalStrategy(
   function(username, password, done) {
-    console.log('in local');
     User.findOne({username:username}).exec(function(err, user) {
-      console.log('in findOne');
-      console.log(err);
-      console.log(user);
       if(user) {
         return done(null, user);
       } else {
@@ -36,7 +24,7 @@ passport.use(new LocalStrategy(
       }
     })
   }
-));*/
+));
 
 passport.serializeUser(function(user, done) {
   if(user) {
