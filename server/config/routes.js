@@ -7,11 +7,11 @@ module.exports = function(app) {
       User.find({}).exec(function(err, collection) {
           res.send(collection);
       })
-  })
+  });
 
-    app.get('/partials/*', function(req, res) {
+  app.get('/partials/*', function(req, res) {
     res.render('../../public/app/' + req.params[0]);
-  })
+  });
 
   app.post('/login', auth.authenticate);
 
@@ -25,4 +25,4 @@ module.exports = function(app) {
         bootstrappedUser: req.user
       });
   });
-}
+};
